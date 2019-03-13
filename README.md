@@ -7,8 +7,8 @@ This is a React based web application which uses 3rd Party API(OpenWeatherMap) t
 *  The UI should have an input box with autocomplete to type the city name in and update the forecast accordingly.
 *  Use a third-party API(i.e. OpenWeatherMap or others) to fetch weather data.
 
-### Implementation details of coding challenge
-The Frontend challenge to develop weather forecast application have been implemented using below technology stack.
+### Implementation details
+The weather forecast application have been implemented using below technology stack.
 * ReactJS - JavaScript library which helps build Single Page Application with reusable UI component.
 * Redux - JavaScript state management library used with React to manage the application state.
 * Webpack - Module bundling to bundle assets(JS, CSS, images) into single file and to manage dependencies.
@@ -18,7 +18,7 @@ The Frontend challenge to develop weather forecast application have been impleme
 * OpenWeatherMap - Free weather API to fetch information related with weather forecast.
 * ReactTransition - JavaScript library to add CSS transition to React components.
 
-## How to run the code challenge
+## How to run the code
 
 1. Clone the latest code from repository (https://github.com/jagadish404/react-weather-forecast.git)
 2. Open command terminal with the root folder of the repository
