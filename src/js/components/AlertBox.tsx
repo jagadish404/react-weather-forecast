@@ -5,17 +5,17 @@ import { RootState } from '../store';
 
 const AlertBox: React.FC = () => {
   const weatherReport = useSelector((state: RootState) => state.weatherReport);
-  const { alertText, showSpinner, alertStyle, showAlert } = weatherReport;
+  const { alertText, status, alertStyle } = weatherReport;
 
-  if (!showAlert) return null;
+  if (alertText === '') return null;
 
   return (
-    <Alert variant={alertStyle}>
+    <div className={`alert alert-${alertStyle}`}>
       <h4>
-        {showSpinner && <span className="spinner-border spinner-border-sm" />}
+        {status === 'loading' && <span className="spinner-border spinner-border-sm" />}
         &nbsp;{alertText}
       </h4>
-    </Alert>
+    </div>
   );
 };
 

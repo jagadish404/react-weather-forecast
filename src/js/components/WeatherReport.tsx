@@ -1,26 +1,48 @@
-import React, { useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import moment from 'moment';
 import DailyForeacast from './DailyForecast';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 
 const WeatherReport: React.FC = () => {
-  // Get state from weatherReport reducer (assuming state.weatherData)
   const weatherReport = useSelector((state: RootState) => state.weatherReport);
-  const { result, searchText, daySelected: daySelectedFromStore } = weatherReport;
+  const { result, searchText } = weatherReport;
 
-  // Local state for selected day
-  const [daySelected, setDaySelected] = useState(daySelectedFromStore);
+  const [daySelected, setDaySelected] = useState<string | null>(null);
+  const [groupedList, setGroupedList] = useState<{ [key: string]: any[] }>({});
 
   if (!result || !result.list) return null;
 
-  const { list } = result;
-  const forecastDuration = Object.keys(list);
-  const todayForecast = list[daySelected] || [];
+  const forecastDuration = Object.keys(groupedList);
+  const todayForecast = (daySelected && groupedList[daySelected]) || [];
 
   const selectDay = (forecastDate: string) => {
     setDaySelected(forecastDate);
   };
+
+  const getGroupedWeatherForecast = () => {
+    const groupedWeatherForecast: { [key: string]: any[] } = {};
+
+    result.list.forEach(forecast => {
+      const { dt_txt: dateText } = forecast;
+      const forecastDate = moment(dateText).format('YYYY-MM-DD');
+
+      groupedWeatherForecast[forecastDate] = [...(groupedWeatherForecast[forecastDate] || []), forecast];
+    });
+    return groupedWeatherForecast;
+  };
+
+  useEffect(
+    () => {
+      const groupedWeatherForecast = getGroupedWeatherForecast();
+      setGroupedList(groupedWeatherForecast);
+
+      if (Object.keys(groupedWeatherForecast).length > 0) {
+        setDaySelected(Object.keys(groupedWeatherForecast)[0]);
+      }
+    },
+    [result.list]
+  );
 
   return (
     <React.Fragment>

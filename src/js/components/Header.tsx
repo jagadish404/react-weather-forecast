@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AutoComplete, Input, Button } from 'antd';
+import { AutoComplete, Input } from 'antd';
 import { CSSTransition } from 'react-transition-group';
+import { Button } from 'react-bootstrap';
 import cities from 'cities.json';
 
 import { fetchWeatherDetails } from '../actions/commonActions';
@@ -41,7 +42,7 @@ const Header: React.FC = () => {
     if (value.length >= 3) {
       filteredCities = (cities as City[])
         .filter(city => city.name.toLowerCase().includes(value.toLowerCase()))
-        .map(city => ({ value: city.name }));
+        .map(city => ({ value: city.name, key: `${city.lat}-${city.lng}` }));
     }
     setSearchText(value);
     setCityList(filteredCities);
@@ -69,24 +70,16 @@ const Header: React.FC = () => {
                 value={searchText}
                 onSearch={handleSearchChange}
                 onSelect={selectCity}
-                style={{ width: '100%' }}
+                className="flex-grow-1"
               >
                 <Input placeholder="Type your city name here" id="search-box" className="form-control" />
               </AutoComplete>
-              <span className="input-group-btn">
-                <Button className="btn btn-info" type="primary" onClick={getWeather} size="small">
+              <span className="">
+                <Button className="btn btn-info" onClick={getWeather} size="sm">
                   <i className="glyphicon glyphicon-search" />
                 </Button>
-                <Button className="btn btn-info" type="default" onClick={clearText} size="small">
+                <Button className="btn btn-info" onClick={clearText} size="sm">
                   Clear
-                </Button>
-                <Button
-                  className="btn btn-info"
-                  type="default"
-                  size="small"
-                  onClick={() => dispatch(clearWeatherReport())}
-                >
-                  Call reducer
                 </Button>
               </span>
             </div>
