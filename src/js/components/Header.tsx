@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { AutoComplete, Input } from 'antd';
 import { CSSTransition } from 'react-transition-group';
 import { Button } from 'react-bootstrap';
 import cities from 'cities.json';
 
-import { fetchWeatherDetails } from '../actions/commonActions';
-import { fetchWeatherReport, clearWeatherReport } from '../reducers/weatherReportReducer';
-import { RootState } from '../store';
+import { fetchWeatherReport } from '../reducers/weatherReportReducer';
 
 // Define the city type based on your cities.json structure
 interface City {

@@ -14,9 +14,6 @@ interface SearchResult {
   [key: string]: any;
 }
 
-interface GroupedList {
-  [date: string]: Forecast[];
-}
 
 interface CommonState {
   result: SearchResult | null;

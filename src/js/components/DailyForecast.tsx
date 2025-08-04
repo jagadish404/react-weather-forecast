@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import moment from 'moment';
-import { Transition, CSSTransition } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import { IForecastHour } from '../types';
 
 interface DailyForecastProps {
@@ -8,7 +8,7 @@ interface DailyForecastProps {
   counter: number;
 }
 
-const DailyForeacast: React.FC<DailyForecastProps> = ({ forecastHour, counter }) => {
+const DailyForecast: React.FC<DailyForecastProps> = ({ forecastHour, counter }) => {
   const [show, setShow] = useState(false);
   const { dt_txt: dateText, weather, clouds, main, wind } = forecastHour;
   const weatherIconURL = 'https://openweathermap.org/img/w/';
@@ -59,4 +59,4 @@ const DailyForeacast: React.FC<DailyForecastProps> = ({ forecastHour, counter })
   );
 };
 
-export default DailyForeacast;
+export default DailyForecast;

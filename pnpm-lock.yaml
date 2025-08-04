@@ -26,15 +26,9 @@ importers:
       moment:
         specifier: ^2.24.0
         version: 2.30.1
-      open:
-        specifier: ^6.0.0
-        version: 6.4.0
       path:
         specifier: ^0.12.7
         version: 0.12.7
-      prop-types:
-        specifier: ^15.6.2
-        version: 15.8.1
       react:
         specifier: ^18.0.0
         version: 18.3.1
@@ -3762,10 +3756,6 @@ packages:
   open@10.2.0:
     resolution: {integrity: sha512-YgBpdJHPyQ2UE5x+hlSXcnejzAvD0b22U2OuAP+8OnlJT+PjWPxtgmGqKKc+RgTM63U9gN0YzrYc71R2WT/hTA==}
     engines: {node: '>=18'}
-
-  open@6.4.0:
-    resolution: {integrity: sha512-IFenVPgF70fSm1keSd2iDBIDIBZkroLeuffXq+wKTzTJlBpesFWojV9lb8mzOfaAzM1sr7HQHuO0vtV0zYekGg==}
-    engines: {node: '>=8'}
 
   optionator@0.8.3:
     resolution: {integrity: sha512-+IW9pACdk3XWmmTXG8m3upGUJst5XRGzxMRjXzAuJ1XnIFNvfhjjIuYkDvysnPQ7qzqVzLt78BCruntqRhWQbA==}
@@ -10181,10 +10171,6 @@ snapshots:
       define-lazy-prop: 3.0.0
       is-inside-container: 1.0.0
       wsl-utils: 0.1.0
-
-  open@6.4.0:
-    dependencies:
-      is-wsl: 1.1.0
 
   optionator@0.8.3:
     dependencies:
