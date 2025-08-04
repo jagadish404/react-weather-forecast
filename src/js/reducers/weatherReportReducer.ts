@@ -79,7 +79,7 @@ const commonSlice = createSlice({
       .addCase(fetchWeatherReport.fulfilled, (state, action: PayloadAction<{ searchResult: SearchResult, searchText: string }>) => {
         const { cod: statusCode, list: forecastList } = action.payload.searchResult;
         const { searchText } = action.payload;
-        let alertStyle = 'danger';
+        const alertStyle = 'danger';
         let alertText = '';
 
         if (statusCode !== '200') {
