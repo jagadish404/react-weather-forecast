@@ -26,21 +26,18 @@ const Header: React.FC = () => {
     setShow(true);
   }, []);
 
-  const getWeather = useCallback(
-    () => {
-      if (searchText.length > 0) {
-        dispatch(fetchWeatherReport(searchText));
-      }
-    },
-    [dispatch, searchText]
-  );
+  const getWeather = useCallback(() => {
+    if (searchText.length > 0) {
+      dispatch(fetchWeatherReport(searchText));
+    }
+  }, [dispatch, searchText]);
 
   const handleSearchChange = (value: string) => {
     let filteredCities: { value: string }[] = [];
     if (value.length >= 3) {
       filteredCities = (cities as City[])
-        .filter(city => city.name.toLowerCase().includes(value.toLowerCase()))
-        .map(city => ({ value: city.name, key: `${city.lat}-${city.lng}` }));
+        .filter((city) => city.name.toLowerCase().includes(value.toLowerCase()))
+        .map((city) => ({ value: city.name, key: `${city.lat}-${city.lng}` }));
     }
     setSearchText(value);
     setCityList(filteredCities);
@@ -58,7 +55,7 @@ const Header: React.FC = () => {
 
   return (
     <CSSTransition nodeRef={nodeRef} in={show} timeout={1000} classNames="page-header" unmountOnExit>
-      {state =>
+      {(state) => (
         <header className="page-header">
           <div className={`page-header-name page-header-name-${state}`}>React weather app</div>
           <div id="custom-search-input">
@@ -82,7 +79,8 @@ const Header: React.FC = () => {
               </span>
             </div>
           </div>
-        </header>}
+        </header>
+      )}
     </CSSTransition>
   );
 };
