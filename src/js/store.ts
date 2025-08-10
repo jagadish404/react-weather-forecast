@@ -4,13 +4,13 @@ import weatherReportReducer from '../js/reducers/weatherReportReducer';
 
 export const store = configureStore({
   reducer: {
-    weatherReport: weatherReportReducer
+    weatherReport: weatherReportReducer,
   },
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: false // Disable serializable check for non-serializable data
+      serializableCheck: false, // Disable serializable check for non-serializable data
     }).concat(logger), // Add logger middleware
-  devTools: process.env.NODE_ENV !== 'production' // Enable Redux DevTools in development
+  devTools: process.env.NODE_ENV !== 'production', // Enable Redux DevTools in development
 });
 
 export default store;

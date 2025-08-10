@@ -14,7 +14,6 @@ interface SearchResult {
   [key: string]: any;
 }
 
-
 interface CommonState {
   result: SearchResult | null;
   searchText: string;
@@ -37,13 +36,12 @@ const initialState: CommonState = {
 export const fetchWeatherReport = createAsyncThunk(
   'common/fetchWeatherReport',
   async (searchText: string, { rejectWithValue }) => {
-    const reqUrl = 
-    `forecast?q=${searchText}&APPID=${process.env.REACT_WEATHER_APP_API_KEY}&units=metric`
+    const reqUrl = `forecast?q=${searchText}&APPID=${process.env.REACT_WEATHER_APP_API_KEY}&units=metric`;
     try {
       const response = await axios.get(reqUrl);
       return { searchResult: response.data, searchText };
     } catch (error: any) {
-      return rejectWithValue(error.response?.data || { message: 'Error fetching weather' } as any);
+      return rejectWithValue(error.response?.data || ({ message: 'Error fetching weather' } as any));
     }
   }
 );
@@ -76,23 +74,26 @@ const commonSlice = createSlice({
         state.alertStyle = 'danger';
         state.status = 'failed';
       })
-      .addCase(fetchWeatherReport.fulfilled, (state, action: PayloadAction<{ searchResult: SearchResult, searchText: string }>) => {
-        const { cod: statusCode, list: forecastList } = action.payload.searchResult;
-        const { searchText } = action.payload;
-        const alertStyle = 'danger';
-        let alertText = '';
+      .addCase(
+        fetchWeatherReport.fulfilled,
+        (state, action: PayloadAction<{ searchResult: SearchResult; searchText: string }>) => {
+          const { cod: statusCode, list: forecastList } = action.payload.searchResult;
+          const { searchText } = action.payload;
+          const alertStyle = 'danger';
+          let alertText = '';
 
-        if (statusCode !== '200') {
-          alertText = `No results found for "${searchText}". Try using different city.`;
+          if (statusCode !== '200') {
+            alertText = `No results found for "${searchText}". Try using different city.`;
+          }
+
+          state.result = { ...action.payload.searchResult };
+          state.searchText = searchText;
+          state.alertText = alertText;
+          state.alertStyle = alertStyle;
+          state.error = null;
+          state.status = 'succeeded';
         }
-
-        state.result = { ...action.payload.searchResult };
-        state.searchText = searchText;
-        state.alertText = alertText;
-        state.alertStyle = alertStyle;
-        state.error = null;
-        state.status = 'succeeded';
-      });
+      );
   },
 });
 
