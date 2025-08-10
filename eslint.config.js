@@ -22,6 +22,7 @@ module.exports = defineConfig([{
     languageOptions: {
         globals: {
             ...globals.browser,
+            ...globals.jest,
         },
 
         parser: tsParser,
