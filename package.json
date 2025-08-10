@@ -9,7 +9,8 @@
     "test": "jest",
     "test:watch": "pnpm test -- --watch",
     "lint": "eslint src/. --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "eslint src/. --ext .js,.jsx,.ts,.tsx --fix"
+    "lint:fix": "eslint src/. --ext .js,.jsx,.ts,.tsx --fix",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -66,6 +67,7 @@
     "eslint-plugin-react": "^7.37.5",
     "globals": "^16.3.0",
     "html-webpack-plugin": "^5.6.3",
+    "husky": "^9.1.7",
     "jest": "^30.0.5",
     "react-refresh": "^0.17.0",
     "style-loader": "^4.0.0",
