@@ -24,7 +24,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
     "antd": "^5.26.5",
-    "axios": "^0.30.0",
+    "axios": "^1.12.0",
     "bootstrap": "^5.3.7",
     "cities.json": "^1.1.50",
     "moment": "^2.30.1",
