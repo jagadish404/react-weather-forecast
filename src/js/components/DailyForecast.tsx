@@ -22,13 +22,11 @@ const DailyForecast: React.FC<DailyForecastProps> = ({ forecastHour, counter }) 
 
   return (
     <CSSTransition in={show} timeout={timeout} nodeRef={nodeRef} unmountOnExit>
-      {state =>
+      {(state) => (
         <div className={`forecast-hourly grid forecast-hourly-${state}`}>
           <div className="row">
             <div className="col-xs-3">
-              <span>
-                {moment(dateText).format('HH:mm')}
-              </span>
+              <span>{moment(dateText).format('HH:mm')}</span>
               <img
                 src={`${weatherIconURL}${weather[0].icon}.png`}
                 className="weather-icon scale-animate"
@@ -37,24 +35,17 @@ const DailyForecast: React.FC<DailyForecastProps> = ({ forecastHour, counter }) 
             </div>
             <div className="col-xs-9">
               <div>
-                <span className="badge">
-                  {Math.floor(main.temp)}&deg;C
-                </span>
-                <span>
-                  {' '}{weather[0].description}
-                </span>
+                <span className="badge">{Math.floor(main.temp)}&deg;C</span>
+                <span> {weather[0].description}</span>
               </div>
               <div>
-                <span>
-                  Wind:{wind.speed}m/s
-                </span>
-                <span>
-                  {' '}Clouds:{clouds.all}%
-                </span>
+                <span>Wind:{wind.speed}m/s</span>
+                <span> Clouds:{clouds.all}%</span>
               </div>
             </div>
           </div>
-        </div>}
+        </div>
+      )}
     </CSSTransition>
   );
 };

@@ -1,64 +1,74 @@
 @-webkit-keyframes spin {
-    from { -webkit-transform: rotate(0deg);}
-    to { -webkit-transform: rotate(360deg);}
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @keyframes scale {
-    0% { transform: scale(1);}
-    50% { transform: scale(1.25);}
-    100% { transform: scale(1);}
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .glyphicon-refresh-animate {
-    -animation: spin .7s infinite linear;
-    -webkit-animation: spin .7s infinite linear;
+  -animation: spin 0.7s infinite linear;
+  -webkit-animation: spin 0.7s infinite linear;
 }
 
 .scale-animate {
-    -animation: scale .7s infinite linear;
-    -webkit-animation: scale .7s infinite linear;
+  -animation: scale 0.7s infinite linear;
+  -webkit-animation: scale 0.7s infinite linear;
 }
 
 .page-header-name {
-    transition: opacity 400ms ease-in-out;
+  transition: opacity 400ms ease-in-out;
 }
 
 .page-header-name-entering {
-    opacity: 0;
+  opacity: 0;
 }
 
 .page-header-name-entered {
-    opacity: 1;
+  opacity: 1;
 }
 
 .search-input {
-    transition: all 400ms ease-in-out 500ms;
-    transform: scale(0.7);
-    opacity: 0;
+  transition: all 400ms ease-in-out 500ms;
+  transform: scale(0.7);
+  opacity: 0;
 }
 
 .search-input-entering {
-    transform: scale(0.7);
-    opacity: 0;
+  transform: scale(0.7);
+  opacity: 0;
 }
 
 .search-input-entered {
-    opacity: 1;
-    transform: scale(1);
+  opacity: 1;
+  transform: scale(1);
 }
 
 .forecast-hourly {
-    transition: all 400ms ease-in-out;
-    margin-left: -20px;
-    opacity: 0;
+  transition: all 400ms ease-in-out;
+  margin-left: -20px;
+  opacity: 0;
 }
 
 .forecast-hourly-entering {
-    margin-left: -20px;
-    opacity: 0;
+  margin-left: -20px;
+  opacity: 0;
 }
 
 .forecast-hourly-entered {
-    margin-left: 0;
-    opacity: 1;
+  margin-left: 0;
+  opacity: 1;
 }

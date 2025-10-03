@@ -12,14 +12,15 @@ const MainSection: React.FC = () => {
     <div className="main-section">
       <AlertBox />
       {searchText.length > 0 && result !== null && <WeatherReport />}
-      {searchText.length === 0 &&
+      {searchText.length === 0 && (
         <div className="about-app p-5 mb-4 bg-light border rounded-3">
           <h4>Search for weather forecast for any cities around the world.</h4>
           <div>
             This app can help you get detailed information regarding weather of your city or any other you want to know
             about.
           </div>
-        </div>}
+        </div>
+      )}
     </div>
   );
 };

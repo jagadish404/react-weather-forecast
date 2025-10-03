@@ -23,7 +23,7 @@ const WeatherReport: React.FC = () => {
   const getGroupedWeatherForecast = () => {
     const groupedWeatherForecast: { [key: string]: any[] } = {};
 
-    result.list.forEach(forecast => {
+    result.list.forEach((forecast) => {
       const { dt_txt: dateText } = forecast;
       const forecastDate = moment(dateText).format('YYYY-MM-DD');
 
@@ -32,17 +32,14 @@ const WeatherReport: React.FC = () => {
     return groupedWeatherForecast;
   };
 
-  useEffect(
-    () => {
-      const groupedWeatherForecast = getGroupedWeatherForecast();
-      setGroupedList(groupedWeatherForecast);
+  useEffect(() => {
+    const groupedWeatherForecast = getGroupedWeatherForecast();
+    setGroupedList(groupedWeatherForecast);
 
-      if (Object.keys(groupedWeatherForecast).length > 0) {
-        setDaySelected(Object.keys(groupedWeatherForecast)[0]);
-      }
-    },
-    [result.list]
-  );
+    if (Object.keys(groupedWeatherForecast).length > 0) {
+      setDaySelected(Object.keys(groupedWeatherForecast)[0]);
+    }
+  }, [result.list]);
 
   return (
     <React.Fragment>
@@ -50,7 +47,7 @@ const WeatherReport: React.FC = () => {
         Current weather forecast in <i>{searchText}</i>
       </h4>
       <ul className="nav nav-tabs">
-        {forecastDuration.map(forecastDate =>
+        {forecastDuration.map((forecastDate) => (
           <li
             className={`daily-forecast ${daySelected === forecastDate ? 'active' : ''}`}
             key={forecastDate}
@@ -58,12 +55,12 @@ const WeatherReport: React.FC = () => {
           >
             {moment(forecastDate).isSame(moment(), 'day') ? 'Today' : moment(forecastDate).format('ddd, MMM DD')}
           </li>
-        )}
+        ))}
       </ul>
       <div>
-        {todayForecast.map((forecastHour: any, index: number) =>
+        {todayForecast.map((forecastHour: any, index: number) => (
           <DailyForeacast key={forecastHour.dt_txt} forecastHour={forecastHour} counter={index + 1} />
-        )}
+        ))}
       </div>
     </React.Fragment>
   );
