@@ -41,13 +41,16 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.28.0",
-    "@babel/core": "^8.0.0",
-    "@babel/preset-env": "^7.28.0",
+    "@babel/core": "^7.26.10",
+    "@babel/preset-env": "^7.26.10",
     "@babel/preset-react": "^7.29.7",
     "@babel/preset-typescript": "^7.27.1",
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.32.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.6.1",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@types/jest": "^30.0.0",
     "@types/react": "^19.1.8",
     "@types/react-bootstrap": "^1.1.0",
     "@types/react-dom": "^19.1.6",
@@ -56,19 +59,19 @@
     "@types/redux-logger": "^3.0.13",
     "@typescript-eslint/eslint-plugin": "^8.65.0",
     "@typescript-eslint/parser": "^8.65.0",
-    "babel-jest": "^30.0.5",
+    "babel-jest": "^30.5.0",
     "babel-loader": "^10.0.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^7.1.4",
     "dotenv-webpack": "^8.1.1",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.8",
     "eslint": "^9.39.5",
+    "eslint-plugin-jest": "^29.16.5",
     "eslint-plugin-react": "^7.37.5",
-    "globals": "^16.3.0",
+    "globals": "^16.5.0",
     "html-webpack-plugin": "^5.6.8",
     "husky": "^9.1.7",
-    "jest": "^30.4.2",
+    "jest": "^30.5.0",
+    "jest-environment-jsdom": "^30.5.0",
     "react-refresh": "^0.17.0",
     "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.3.14",
@@ -78,9 +81,16 @@
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^6.0.0"
   },
+  "overrides": {
+    "@babel/core": "^7.26.10",
+    "@babel/preset-env": "^7.26.10"
+  },
   "jest": {
     "verbose": true,
-    "setupTestFrameworkScriptFile": "./setupTests.js",
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": [
+      "./setupTests.js"
+    ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"

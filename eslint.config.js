@@ -16,9 +16,11 @@ const compat = new FlatCompat({
 
 module.exports = defineConfig([
   {
+    files: ['src/**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
       globals: {
         ...globals.browser,
+        ...globals.jest,
       },
 
       parser: tsParser,
@@ -48,5 +50,7 @@ module.exports = defineConfig([
         version: 'detect',
       },
     },
+
+    ignores: ['**/pnpm-lock.yaml', '**/package.json', '**/.babelrc', '**/dist/**', '**/node_modules/**'],
   },
 ]);

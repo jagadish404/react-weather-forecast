@@ -1,36 +1,40 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { renderWithProviders } from '../test-utils';
 import App from './App';
-import Header from './Header';
-import MainSection from './MainSection';
-import Footer from './Footer';
+
+function renderApp() {
+  return renderWithProviders(<App />);
+}
 
 describe('App component', () => {
-	describe('Number of children components', () => {
-		it('should have 3 children', () => {
-			const app = shallow(<App />);
-			expect(app.children()).toHaveLength(3);
-		});
-	});
+  describe('Number of children components', () => {
+    it('should have 3 children', () => {
+      const output = renderApp();
+      expect(output.container.children).toHaveLength(3);
+    });
+  });
 
-	describe('Heade r', () => {
-		it('should render Header', () => {
-			const app = shallow(<App />);
-			expect(app.contains(<Header />)).toBe(true);
-		});
-	});
+  describe('Header', () => {
+    it('should render Header', async () => {
+      const output = renderApp();
+      const { findByText } = output;
+      expect(await findByText('React weather app')).toBeInTheDocument();
+    });
+  });
 
-	describe('Mainsection', () => {
-		it('should render MainSection', () => {
-			const output = shallow(<App />);
-			expect(output.contains(<MainSection />)).toBe(true);
-		});
-	});
+  describe('Main section', () => {
+    it('should render MainSection', async () => {
+      const output = renderApp();
+      const { findByText } = output;
+      expect(await findByText('Search for weather forecast for any cities around the world.')).toBeInTheDocument();
+    });
+  });
 
-	describe('Footer', () => {
-		it('should render Footer', () => {
-			const output = shallow(<App />);
-			expect(output.contains(<Footer />)).toBe(true);
-		});
-	});
+  describe('Footer', () => {
+    it('should render Footer', async () => {
+      const output = renderApp();
+      const { findByText } = output;
+      expect(await findByText('Developed by: Jagadish')).toBeInTheDocument();
+    });
+  });
 });
