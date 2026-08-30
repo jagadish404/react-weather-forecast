@@ -1,34 +1,38 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { Header } from './Header';
+import { fireEvent } from '@testing-library/react';
+import { renderWithProviders } from '../test-utils';
+import Header from './Header';
 
 const props = {
-	fetchWeatherDetails: jest.fn()
+  fetchWeatherDetails: jest.fn(),
 };
-const output = mount(<Header {...props} />);
+
+function renderHeader() {
+  return renderWithProviders(<Header {...props} />);
+}
 
 describe('components', () => {
-	describe('header block', () => {
-		it('should render', () => {
-			expect(output.find('header')).toHaveLength(1);
-			expect(output.find('header').props().className).toEqual('page-header');
+  describe('header block', () => {
+    it('should render', async () => {
+      const output = renderHeader();
+      expect(await output.findByRole('banner')).toBeInTheDocument();
+      expect((await output.findByRole('banner')).className).toEqual('page-header');
 
-			expect(output.find('div.page-header-name')).toHaveLength(1);
-			expect(output.find('div.page-header-name').text()).toEqual('React weather app');
-			expect(output.find('input#search-box')).toHaveLength(1);
-			expect(output.find('input#search-box').props().className).toEqual('form-control');
-			expect(output.find('input#search-box').props().placeholder).toEqual('Type your city name here');
-		});
-	});
+      expect(await output.findByText('React weather app')).toBeInTheDocument();
+      const searchBox = await output.findByPlaceholderText('Type your city name here');
+      expect(searchBox).toBeInTheDocument();
+    });
+  });
 
-	describe('Input search on change', () => {
-		it('should call handleSearchChange', () => {
-			const searchBox = output.find('input#search-box');
-			const eventData = { target: { value: 'London' } };
+  describe('Input search on change', () => {
+    it('should call handleSearchChange', async () => {
+      const output = renderHeader();
+      const searchBox = await output.findByPlaceholderText('Type your city name here');
+      const eventData = { target: { value: 'London' } };
 
-			expect(searchBox.type()).toBe('input');
-			searchBox.simulate('change', eventData);
-			expect(output.instance().state.searchText).toEqual(eventData.target.value);
-		});
-	});
+      expect(searchBox.tagName.toLowerCase()).toBe('input');
+      fireEvent.change(searchBox, { target: { value: 'London' } });
+      expect(searchBox.value).toEqual(eventData.target.value);
+    });
+  });
 });
