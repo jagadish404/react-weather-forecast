@@ -16,6 +16,10 @@ const compat = new FlatCompat({
 
 module.exports = defineConfig([
   {
+    files: ['**/*.test.*/**/__tests__/**'],
+    extends: compat.extends('plugin:jest/recommended'),
+  },
+  {
     files: ['src/**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
       globals: {

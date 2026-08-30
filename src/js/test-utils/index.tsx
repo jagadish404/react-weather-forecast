@@ -3,6 +3,6 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import store from '../store';
 
-export function renderWithProviders(component: React.ReactNode) {
-  return render(<Provider store={store}>{component}</Provider>);
+export function renderWithProviders(component: React.ReactNode, storeOverride = store) {
+  return render(<Provider store={storeOverride}>{component}</Provider>);
 }

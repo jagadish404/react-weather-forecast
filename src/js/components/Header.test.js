@@ -15,10 +15,10 @@ describe('components', () => {
   describe('header block', () => {
     it('should render', async () => {
       const output = renderHeader();
-      expect(output.getByRole('banner')).toBeInTheDocument();
-      expect(output.getByRole('banner').className).toEqual('page-header');
+      expect(await output.findByRole('banner')).toBeInTheDocument();
+      expect((await output.findByRole('banner')).className).toEqual('page-header');
 
-      expect(output.getByText('React weather app')).toBeInTheDocument();
+      expect(await output.findByText('React weather app')).toBeInTheDocument();
       const searchBox = await output.findByPlaceholderText('Type your city name here');
       expect(searchBox).toBeInTheDocument();
     });

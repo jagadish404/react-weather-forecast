@@ -8,8 +8,10 @@ function renderApp() {
 
 describe('App component', () => {
   describe('Number of children components', () => {
-    it('should have 3 children', () => {
+    it('should have 3 children', async () => {
       const output = renderApp();
+
+      expect(await output.findByRole('banner')).toBeInTheDocument();
       expect(output.container.children).toHaveLength(3);
     });
   });
